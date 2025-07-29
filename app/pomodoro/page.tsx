@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Award } from 'lucide-react';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -10,9 +10,18 @@ import { useBackground } from '@/contexts/BackgroundContext';
 import { PomodoroTimer } from '@/components/PomodoroTimer';
 import { BackgroundSelector } from '@/components/BackgroundSelector';
 
+function Search() {
+  const searchParams = useSearchParams()
+  const taskId = searchParams.get('taskId');
+  return taskId
+}
+
 export default function PomodoroPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  <Suspense>
+    <Search/>
+  </Suspense>
   const taskId = searchParams.get('taskId');
   const { currentBackground, setBackground } = useBackground();
   
