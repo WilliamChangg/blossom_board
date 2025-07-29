@@ -49,10 +49,10 @@ export const KanbanBoard: React.FC<KanbanBoardProps> = ({
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 ">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <div className="p-3 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl text-white">
+          <div className="p-3 bg-gradient-to-r from-pink-400 via-pink-600 to-rose-500 tracking-wide drop-shadow-[0_2px_2px_rgba(0,0,0,0.15)] rounded-xl text-white">
             <Target size={24} />
           </div>
           <div>
@@ -77,16 +77,9 @@ export const KanbanBoard: React.FC<KanbanBoardProps> = ({
             </div>
           </div>
 
-          <div className="flex items-center gap-2 px-3 py-2 bg-emerald-50 rounded-lg border border-emerald-200">
-            <TrendingUp size={16} className="text-emerald-600" />
-            <span className="text-sm font-medium text-emerald-700">
-              {focusStreak} day streak
-            </span>
-          </div>
-
           <button
             onClick={() => setShowAddTask(true)}
-            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors shadow-sm hover:shadow-md"
+            className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-pink-400 via-pink-500 to-rose-500 tracking-wide drop-shadow-[0_2px_2px_rgba(0,0,0,0.15)] text-white rounded-lg  hover:bg-blue-700 transition-colors shadow-sm hover:shadow-md"
           >
             <Plus size={18} />
             Add Task
@@ -145,7 +138,7 @@ export const KanbanBoard: React.FC<KanbanBoardProps> = ({
             <div className="flex items-center gap-3 pt-2">
               <button
                 onClick={handleAddTask}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                className="px-4 py-2 bg-gradient-to-r from-pink-400 via-pink-600 to-rose-500 tracking-wide drop-shadow-[0_2px_2px_rgba(0,0,0,0.15)] text-white rounded-lg hover:bg-blue-700 transition-colors"
               >
                 Create Task
               </button>
@@ -244,7 +237,7 @@ export const KanbanBoard: React.FC<KanbanBoardProps> = ({
                 Great progress today! 🎉
               </h3>
               <p className="text-gray-600">
-                You've completed {stats.completed} task{stats.completed > 1 ? 's' : ''} and maintained a {focusStreak}-day focus streak.
+                You completed {stats.completed} task{stats.completed > 1 ? 's' : ''}.
               </p>
             </div>
           </div>

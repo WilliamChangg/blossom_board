@@ -65,10 +65,14 @@ export const PomodoroTimer: React.FC<PomodoroTimerProps> = ({
   }, [sessionCompleted]);
 
   return (
-    <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 mb-8">
+    //pomodoro timer card
+    
+    <div className=" rounded-2xl shadow-lg bg-white/20 backdrop-blur-xl p-6 mb-8">
+
       <div className="flex items-center justify-between mb-6">
+        
         <div className="flex items-center gap-3">
-          <div className="p-3 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl text-white">
+          <div className="p-3 bg-gradient-to-r from-pink-400 via-pink-600 to-rose-500 rounded-xl text-white">
             <Timer size={24} />
           </div>
           <div>
@@ -150,7 +154,7 @@ export const PomodoroTimer: React.FC<PomodoroTimerProps> = ({
 
       <div className="text-center mb-6">
         <div className="relative inline-block">
-          <svg className="w-32 h-32 transform -rotate-90" viewBox="0 0 120 120">
+          <svg className="w-40 h-40 transform -rotate-90" viewBox="0 0 120 120">
             <circle
               cx="60"
               cy="60"
@@ -202,7 +206,7 @@ export const PomodoroTimer: React.FC<PomodoroTimerProps> = ({
             flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all duration-300
             ${isRunning 
               ? 'bg-red-500 hover:bg-red-600 text-white hover:scale-105 shadow-lg hover:shadow-red-200' 
-              : 'bg-green-500 hover:bg-green-600 text-white hover:scale-105 shadow-lg hover:shadow-green-200'
+              : 'bg-pink-500 hover:bg-pink-600 text-white hover:scale-105 shadow-lg hover:shadow-pink-200'
             }
           `}
         >

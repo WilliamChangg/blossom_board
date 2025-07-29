@@ -8,8 +8,8 @@ import {
 const initialTasks: Record<string, Task> = {
   'task-1': {
     id: 'task-1',
-    title: 'Setup project structure',
-    description: 'Create the basic folder structure and configuration files',
+    title: 'High Priority Task',
+    description: 'Create a description for your task.',
     status: 'todo',
     createdAt: new Date(),
     pomodoroSessions: 0,
@@ -17,8 +17,8 @@ const initialTasks: Record<string, Task> = {
   },
   'task-2': {
     id: 'task-2',
-    title: 'Design UI components',
-    description: 'Create reusable components for the application',
+    title: 'Lock In with a Pomodoro Timer',
+    description: 'Currently working on task.',
     status: 'doing',
     createdAt: new Date(),
     pomodoroSessions: 2,
@@ -26,8 +26,8 @@ const initialTasks: Record<string, Task> = {
   },
   'task-3': {
     id: 'task-3',
-    title: 'Write documentation',
-    description: 'Document the API and component usage',
+    title: 'Completed Task',
+    description: 'Congratulations! You can now delete this task or keep it for visualization.',
     status: 'done',
     createdAt: new Date(),
     pomodoroSessions: 1,

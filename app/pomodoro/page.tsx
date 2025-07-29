@@ -178,7 +178,7 @@ export default function PomodoroPage() {
             animate={{ opacity: 1, y: 0 }}
             className="mt-8 text-center"
           >
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20 p-8">
+            <div className="bg-white/20 backdrop-blur-sm rounded-2xl shadow-xl p-8">
               <h3 className="text-xl font-semibold text-slate-800 mb-4">No Task Selected</h3>
               <p className="text-slate-600 mb-6">
                 Go back to the dashboard to select a task and start a focused work session.
@@ -186,7 +186,7 @@ export default function PomodoroPage() {
               <button
                 type="button"
                 onClick={() => router.push('/')}
-                className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+                className="px-6 py-3 bg-gradient-to-r bg-pink-500 hover:bg-pink-600 text-white hover:scale-105 shadow-lg hover:shadow-pink-200 rounded-lg transition-colors font-medium"
               >
                 Select a Task
               </button>

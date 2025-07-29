@@ -47,7 +47,7 @@ export default function DashboardPage() {
       }}
     >
       {/* Background Overlay for Content Readability */}
-      <div className="absolute inset-0 bg-white/30 backdrop-blur-[1px]" />
+      <div className="absolute inset-0 bg-white/10 backdrop-blur-[1px]" />
       
       {/* Content Container */}
       <div className="relative z-10">
@@ -61,41 +61,20 @@ export default function DashboardPage() {
         >
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h1 className="text-4xl font-bold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent mb-2">
-                Productivity Dashboard
-              </h1>
-              <p className="text-slate-600 text-lg">
-                {new Date().toLocaleDateString('en-US', { 
-                  weekday: 'long', 
-                  year: 'numeric', 
-                  month: 'long', 
-                  day: 'numeric' 
-                })}
-              </p>
+                <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-pink-600 to-rose-500 tracking-wide drop-shadow-[0_2px_2px_rgba(0,0,0,0.15)]">
+                  🌸 Blossom Board
+                </h1>
             </div>
             
             <div className="flex items-center gap-6">
               {/* Quick Stats */}
-              <div className="flex gap-6">
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-emerald-600">{todayStats.completed}</div>
-                  <div className="text-sm text-slate-500">Completed</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-blue-600">{todayStats.inProgress}</div>
-                  <div className="text-sm text-slate-500">In Progress</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-orange-600">{focusStreak}</div>
-                  <div className="text-sm text-slate-500">Day Streak</div>
-                </div>
-              </div>
+
 
               {/* Pomodoro Timer Button */}
               <button
                 type="button"
                 onClick={() => router.push('/pomodoro')}
-                className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 text-white rounded-xl hover:from-red-600 hover:to-red-700 transition-all duration-200 font-semibold shadow-lg"
+                className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-pink-400 via-pink-600 to-rose-500 tracking-wide drop-shadow-[0_2px_2px_rgba(0,0,0,0.15)] text-white rounded-xl hover:from-pink-400 hover:via-pink-600 hover:to-rose-600 transition-all duration-200 font-semibold shadow-lg"
               >
                 <Timer size={20} />
                 Pomodoro Timer

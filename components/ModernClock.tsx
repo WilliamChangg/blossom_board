@@ -60,7 +60,7 @@ export const ModernClock: React.FC = () => {
 
   return (
     <div 
-      className={`relative overflow-hidden rounded-3xl shadow-2xl border border-white/30 p-8 mb-8 bg-gradient-to-br ${getGradientByTime()}`}
+      className={`relative overflow-hidden rounded-3xl shadow-2xl p-8 mb-8 `}
     >
       {/* Subtle background pattern */}
       <div className="absolute inset-0 bg-white/20 backdrop-blur-xl" />
@@ -69,17 +69,17 @@ export const ModernClock: React.FC = () => {
       <div className="relative z-10 text-center">
         <div className="flex items-baseline justify-center gap-4 mb-3">
           <span 
-            className={`text-5xl font-mono font-bold bg-gradient-to-r ${getTimeGradient()} bg-clip-text text-transparent tracking-wider drop-shadow-sm`}
+            className={`text-5xl font-mono font-bold bg-gradient-to-r from-pink-400 via-pink-600 to-rose-500 tracking-wide drop-shadow-[0_2px_2px_rgba(0,0,0,0.15)] bg-clip-text text-transparent `}
           >
             {formatTime(time)}
           </span>
           
-          <span className="text-xl font-semibold text-white/90 drop-shadow-sm">
+          <span className="text-xl font-semibold bg-gradient-to-r from-rose-500 via-pink-600 to-pink-500 tracking-wide drop-shadow-[0_2px_2px_rgba(0,0,0,0.15)] bg-clip-text text-transparent">
             {getTimeOfDay()}
           </span>
         </div>
         
-        <p className="text-white/80 font-medium text-lg drop-shadow-sm">
+        <p className="bg-gradient-to-r from-pink-400 via-pink-600 to-rose-500 tracking-wide drop-shadow-[0_2px_2px_rgba(0,0,0,0.15)] bg-clip-text text-transparent font-medium text-lg ">
           {formatDate(time)}
         </p>
 

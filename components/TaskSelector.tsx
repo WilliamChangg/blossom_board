@@ -4,7 +4,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Play, Clock, Circle, Focus } from 'lucide-react';
 import { Task } from '@/lib/types';
-
 interface TaskSelectorProps {
   tasks: Record<string, Task>;
   columns: Record<string, any>;
@@ -72,7 +71,8 @@ export const TaskSelector: React.FC<TaskSelectorProps> = ({
           </div>
 
           <div className="space-y-3">
-            {todoTasks.map((task: any) => (
+            {todoTasks.map((task:Task) => (
+              
               <motion.div
                 key={task.id}
                 className={`group bg-white rounded-xl shadow-sm border p-4 cursor-pointer transition-all duration-200 hover:shadow-md hover:border-blue-200 ${
@@ -104,7 +104,6 @@ export const TaskSelector: React.FC<TaskSelectorProps> = ({
                       )}
                     </div>
                   </div>
-                  
                   <button
                     title="start"
                     type="button"
@@ -141,7 +140,7 @@ export const TaskSelector: React.FC<TaskSelectorProps> = ({
           </div>
 
           <div className="space-y-3">
-            {doingTasks.map((task:any) => (
+            {doingTasks.map((task:Task) => (
               <motion.div
                 key={task.id}
                 className={`group bg-white rounded-xl shadow-sm border p-4 cursor-pointer transition-all duration-200 hover:shadow-md hover:border-blue-200 ${
