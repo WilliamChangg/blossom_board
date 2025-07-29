@@ -72,7 +72,7 @@ export const TaskSelector: React.FC<TaskSelectorProps> = ({
           </div>
 
           <div className="space-y-3">
-            {todoTasks.map((task) => (
+            {todoTasks.map((task: any) => (
               <motion.div
                 key={task.id}
                 className={`group bg-white rounded-xl shadow-sm border p-4 cursor-pointer transition-all duration-200 hover:shadow-md hover:border-blue-200 ${
@@ -106,6 +106,7 @@ export const TaskSelector: React.FC<TaskSelectorProps> = ({
                   </div>
                   
                   <button
+                    title="start"
                     type="button"
                     onClick={(e) => {
                       e.stopPropagation();
@@ -140,7 +141,7 @@ export const TaskSelector: React.FC<TaskSelectorProps> = ({
           </div>
 
           <div className="space-y-3">
-            {doingTasks.map((task) => (
+            {doingTasks.map((task:any) => (
               <motion.div
                 key={task.id}
                 className={`group bg-white rounded-xl shadow-sm border p-4 cursor-pointer transition-all duration-200 hover:shadow-md hover:border-blue-200 ${
@@ -174,6 +175,7 @@ export const TaskSelector: React.FC<TaskSelectorProps> = ({
                   </div>
                   
                   <button
+                    title="stop"
                     type="button"
                     onClick={(e) => {
                       e.stopPropagation();
