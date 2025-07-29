@@ -24,7 +24,7 @@ export const TaskSelector: React.FC<TaskSelectorProps> = ({
   const todoTasks = columns.todo?.taskIds.map((id: string) => tasks[id]).filter(Boolean) || [];
   const doingTasks = columns.doing?.taskIds.map((id: string) => tasks[id]).filter(Boolean) || [];
 
-  const allAvailableTasks = [...todoTasks, ...doingTasks];
+  const allAvailableTasks: Task[] = [...todoTasks, ...doingTasks];
 
   if (allAvailableTasks.length === 0) {
     return (
