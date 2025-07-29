@@ -11,17 +11,9 @@ import { PomodoroTimer } from '@/components/PomodoroTimer';
 import { BackgroundSelector } from '@/components/BackgroundSelector';
 
 function Search() {
-  const searchParams = useSearchParams()
-  const taskId = searchParams.get('taskId');
-  return taskId
-}
-
-export default function PomodoroPage() {
-  const router = useRouter();
+const router = useRouter();
   const searchParams = useSearchParams();
-  <Suspense>
-    <Search/>
-  </Suspense>
+
   const taskId = searchParams.get('taskId');
   const { currentBackground, setBackground } = useBackground();
   
@@ -212,4 +204,12 @@ export default function PomodoroPage() {
       </div>
     </div>
   );
+}
+
+export default function PomodoroPage() {
+  return(
+  <Suspense>
+    <Search/>
+  </Suspense>
+  )
 }
