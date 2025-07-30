@@ -7,14 +7,17 @@ import { useRouter } from 'next/navigation';
 import { useTaskContext } from '@/contexts/TaskContext';
 import { useBackground } from '@/contexts/BackgroundContext';
 import { usePomodoroContext } from '@/contexts/PomodoroContext';
+import { usePetals } from '@/contexts/PetalsContext';
 import { KanbanBoard } from '@/components/KanbanBoard';
 import { ClockWeatherCard } from '@/components/ClockWeatherCard';
 import { BackgroundSelector } from '@/components/BackgroundSelector';
 import { CherryBlossomPetals } from '@/components/CherryBlossomPetals';
+import { PetalsToggle } from '@/components/PetalsToggle';
 
 export default function DashboardPage() {
   const router = useRouter();
   const { currentBackground, setBackground } = useBackground();
+  const { petalsEnabled } = usePetals();
   
   const {
     tasks,
@@ -63,7 +66,7 @@ export default function DashboardPage() {
       <div className="absolute inset-0 bg-white/10 backdrop-blur-[1px]" />
       
       {/* Cherry Blossom Petals Animation */}
-      <CherryBlossomPetals />
+      {petalsEnabled && <CherryBlossomPetals />}
       
       {/* Content Container */}
       <div className="relative z-10">
@@ -103,19 +106,26 @@ export default function DashboardPage() {
                 </motion.div>
               )}
 
-              {/* Pomodoro Timer Button */}
-              <button
-                type="button"
-                onClick={() => router.push('/pomodoro')}
-                className={`flex items-center gap-2 px-6 py-3 bg-gradient-to-r tracking-wide drop-shadow-[0_2px_2px_rgba(0,0,0,0.15)] text-white rounded-xl transition-all duration-200 font-semibold shadow-lg ${
-                  isRunning && currentTask
-                    ? 'from-emerald-400 via-emerald-600 to-emerald-500 hover:from-emerald-400 hover:via-emerald-600 hover:to-emerald-600'
-                    : 'from-pink-300 to-pink-400 hover:from-pink-400  hover:to-pink-500'
-                }`}
-              >
-                <Timer size={20} />
-                {isRunning && currentTask ? 'Pomodoro Timer' : 'Pomodoro Timer'}
-              </button>
+              <PetalsToggle />
+              
+              <div className="flex items-center gap-3">
+                {/* Pomodoro Timer Button */}
+                <button
+                  type="button"
+                  onClick={() => router.push('/pomodoro')}
+                  className={`flex items-center gap-2 px-6 py-3 bg-gradient-to-r tracking-wide drop-shadow-[0_2px_2px_rgba(0,0,0,0.15)] text-white rounded-xl transition-all duration-200 font-semibold shadow-lg ${
+                    isRunning && currentTask
+                      ? 'from-emerald-400 via-emerald-600 to-emerald-500 hover:from-emerald-400 hover:via-emerald-600 hover:to-emerald-600'
+                      : 'from-pink-300 to-pink-400 hover:from-pink-400  hover:to-pink-500'
+                  }`}
+                >
+                  <Timer size={20} />
+                  {isRunning && currentTask ? 'Pomodoro Timer' : 'Pomodoro Timer'}
+                </button>
+                
+                {/* Petals Toggle */}
+                
+              </div>
             </div>
           </div>
         </motion.div>

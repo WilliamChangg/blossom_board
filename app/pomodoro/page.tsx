@@ -7,10 +7,12 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useTaskContext } from '@/contexts/TaskContext';
 import { useBackground } from '@/contexts/BackgroundContext';
 import { usePomodoroContext } from '@/contexts/PomodoroContext';
+import { usePetals } from '@/contexts/PetalsContext';
 import { PomodoroTimer } from '@/components/PomodoroTimer';
 import { TaskSelector } from '@/components/TaskSelector';
 import { BackgroundSelector } from '@/components/BackgroundSelector';
 import { CherryBlossomPetals } from '@/components/CherryBlossomPetals';
+import { PetalsToggle } from '@/components/PetalsToggle';
 
 function Search() {
 const router = useRouter();
@@ -18,6 +20,7 @@ const router = useRouter();
 
   const taskId = searchParams.get('taskId');
   const { currentBackground, setBackground } = useBackground();
+  const { petalsEnabled } = usePetals();
   
   const {
     tasks,
@@ -116,7 +119,7 @@ const router = useRouter();
       <div className="absolute inset-0 bg-pink-50/20 backdrop-blur-[1px]" />
       
       {/* Cherry Blossom Petals Animation */}
-      <CherryBlossomPetals />
+      {petalsEnabled && <CherryBlossomPetals />}
       
       {/* Content Container */}
       <div className="relative z-10">
@@ -207,14 +210,19 @@ const router = useRouter();
           transition={{ duration: 0.6 }}
         >
           <div className="flex items-center justify-between mb-6">
-            <button
-              type="button"
-              onClick={() => router.push('/')}
-              className="flex items-center gap-2 px-4 py-2 text-rose-600 bg-pink-50 hover:text-rose-800 hover:bg-pink-100 rounded-lg transition-colors border border-pink-200/50"
-            >
-              <ArrowLeft size={20} className='-mr-1'/>
-              Back to Dashboard
-            </button>
+            <div className="flex items-center gap-3">
+              <button
+                type="button"
+                onClick={() => router.push('/')}
+                className="flex items-center gap-2 px-4 py-2 text-rose-600 bg-pink-50 hover:text-rose-800 hover:bg-pink-100 rounded-lg transition-colors border border-pink-200/50"
+              >
+                <ArrowLeft size={20} className='-mr-1'/>
+                Back to Dashboard
+              </button>
+              
+              {/* Petals Toggle */}
+              <PetalsToggle />
+            </div>
             
             {/* Quick Stats */}
             <div className="flex gap-6">

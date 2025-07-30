@@ -4,6 +4,7 @@ import "./globals.css";
 import { TaskProvider } from "@/contexts/TaskContext";
 import { BackgroundProvider } from "@/contexts/BackgroundContext";
 import { PomodoroProvider } from "@/contexts/PomodoroContext";
+import { PetalsProvider } from "@/contexts/PetalsContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,11 +32,13 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <BackgroundProvider>
-          <TaskProvider>
-            <PomodoroProvider>
-              {children}
-            </PomodoroProvider>
-          </TaskProvider>
+          <PetalsProvider>
+            <TaskProvider>
+              <PomodoroProvider>
+                {children}
+              </PomodoroProvider>
+            </TaskProvider>
+          </PetalsProvider>
         </BackgroundProvider>
       </body>
     </html>
