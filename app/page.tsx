@@ -8,7 +8,7 @@ import { useTaskContext } from '@/contexts/TaskContext';
 import { useBackground } from '@/contexts/BackgroundContext';
 import { usePomodoroContext } from '@/contexts/PomodoroContext';
 import { KanbanBoard } from '@/components/KanbanBoard';
-import { ModernClock } from '@/components/ModernClock';
+import { ClockWeatherCard } from '@/components/ClockWeatherCard';
 import { BackgroundSelector } from '@/components/BackgroundSelector';
 import { CherryBlossomPetals } from '@/components/CherryBlossomPetals';
 
@@ -49,12 +49,15 @@ export default function DashboardPage() {
   return (
     <div 
       className="min-h-screen relative overflow-hidden"
-      style={{
-        backgroundImage: `url(${currentBackground})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat'
-      }}
+      style={currentBackground.startsWith('linear-gradient') 
+        ? { background: currentBackground }
+        : {
+            backgroundImage: `url(${currentBackground})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }
+      }
     >
       {/* Background Overlay for Content Readability */}
       <div className="absolute inset-0 bg-white/10 backdrop-blur-[1px]" />
@@ -117,8 +120,8 @@ export default function DashboardPage() {
           </div>
         </motion.div>
 
-        {/* Modern Clock Component */}
-        <ModernClock />
+        {/* Clock and Weather Card */}
+        <ClockWeatherCard />
 
         {/* Kanban Board Component */}
         <KanbanBoard

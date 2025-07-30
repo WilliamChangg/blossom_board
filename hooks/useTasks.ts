@@ -171,6 +171,35 @@ export const useTasks = () => {
     setColumns(updatedColumns);
   };
 
+  const moveTaskToTodo = (taskId: string) => {
+    const task = tasks[taskId];
+    if (!task || task.status === 'todo') return;
+
+    // Update task status
+    const updatedTasks = { ...tasks };
+    updatedTasks[taskId] = {
+      ...updatedTasks[taskId],
+      status: 'todo'
+    };
+
+    // Remove from current column
+    const currentStatus = task.status;
+    const updatedColumns = { ...columns };
+    updatedColumns[currentStatus] = {
+      ...updatedColumns[currentStatus],
+      taskIds: updatedColumns[currentStatus].taskIds.filter(id => id !== taskId)
+    };
+    
+    // Add to todo column
+    updatedColumns.todo = {
+      ...updatedColumns.todo,
+      taskIds: [...updatedColumns.todo.taskIds, taskId]
+    };
+
+    setTasks(updatedTasks);
+    setColumns(updatedColumns);
+  };
+
   const moveTaskToCompleted = (taskId: string) => {
     const task = tasks[taskId];
     if (!task || task.status === 'done') return;
@@ -230,6 +259,7 @@ export const useTasks = () => {
     addTask,
     deleteTask,
     moveTaskToInProgress,
+    moveTaskToTodo,
     moveTaskToCompleted,
     getTodayStats,
     getPriorityColor,

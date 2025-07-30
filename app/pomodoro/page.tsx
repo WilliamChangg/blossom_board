@@ -24,6 +24,7 @@ const router = useRouter();
     setTasks,
     columns,
     moveTaskToInProgress,
+    moveTaskToTodo,
     moveTaskToCompleted,
     getPriorityColor,
     getPriorityDot,
@@ -101,12 +102,15 @@ const router = useRouter();
   return (
     <div 
       className="min-h-screen relative overflow-hidden"
-      style={{
-        backgroundImage: `url(${currentBackground})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat'
-      }}
+      style={currentBackground.startsWith('linear-gradient') 
+        ? { background: currentBackground }
+        : {
+            backgroundImage: `url(${currentBackground})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }
+      }
     >
       {/* Background Overlay for Content Readability */}
       <div className="absolute inset-0 bg-pink-50/20 backdrop-blur-[1px]" />
@@ -267,10 +271,12 @@ const router = useRouter();
                 startTimer={startTimer}
                 pauseTimer={pauseTimer}
                 resetTimer={resetTimer}
+                clearCurrentTask={clearCurrentTask}
                 updateTimerSettings={updateTimerSettings}
                 formatTime={formatTime}
                 getProgress={getProgress}
                 tasks={tasks}
+                moveTaskToTodo={moveTaskToTodo}
               />
 
               {/* Task Completed Button */}

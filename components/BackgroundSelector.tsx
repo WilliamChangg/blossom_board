@@ -9,6 +9,27 @@ interface BackgroundSelectorProps {
   onBackgroundChange: (background: string) => void;
 }
 
+const cherryBlossomColors = [
+  {
+    id: 'sakura-pink',
+    name: 'Sakura Pink',
+    gradient: 'linear-gradient(135deg, #fce7f3 0%, #fbcfe8 50%, #f9a8d4 100%)',
+    description: 'Soft cherry blossom pink'
+  },
+  {
+    id: 'spring-dawn',
+    name: 'Spring Dawn',
+    gradient: 'linear-gradient(135deg, #fdf2f8 0%, #fce7f3 30%, #f3e8ff 70%, #e0e7ff 100%)',
+    description: 'Gentle spring morning'
+  },
+  {
+    id: 'petal-breeze',
+    name: 'Petal Breeze',
+    gradient: 'linear-gradient(135deg, #fff1f2 0%, #ffe4e6 25%, #fecaca 50%, #f9a8d4 75%, #f0abfc 100%)',
+    description: 'Dancing cherry petals'
+  }
+];
+
 const natureBackgrounds = [
   {
     id: 'forest',
@@ -113,7 +134,7 @@ export const BackgroundSelector: React.FC<BackgroundSelectorProps> = ({
               </div>
 
               {/* Custom Upload Section */}
-              <div className="mb-6 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-200">
+              <div className="mb-6 p-4 bg-gradient-to-r from-pink-50 to-rose-50 rounded-xl border border-pink-200">
                 <div className="flex items-center gap-3 mb-3">
                   <Upload size={20} className="text-blue-600" />
                   <h4 className="font-semibold text-slate-800">Upload Custom Image</h4>
@@ -125,7 +146,7 @@ export const BackgroundSelector: React.FC<BackgroundSelectorProps> = ({
                     onChange={handleImageUpload}
                     className="hidden"
                   />
-                  <div className="border-2 border-dashed border-blue-300 rounded-lg p-6 text-center cursor-pointer hover:border-blue-400 transition-colors">
+                  <div className="border-2 border-dashed border-pink-300 rounded-lg p-6 text-center cursor-pointer hover:border-pink-400 transition-colors">
                     <Image size={32} className="mx-auto text-blue-500 mb-2" />
                     <p className="text-sm text-slate-600">Click to upload your own background image</p>
                     <p className="text-xs text-slate-500 mt-1">Supports JPG, PNG, WebP</p>
@@ -133,43 +154,93 @@ export const BackgroundSelector: React.FC<BackgroundSelectorProps> = ({
                 </label>
               </div>
 
-              {/* Nature Backgrounds Grid */}
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                {natureBackgrounds.map((bg) => (
-                  <motion.button
-                    key={bg.id}
-                    type="button"
-                    onClick={() => {
-                      onBackgroundChange(bg.url);
-                      setIsOpen(false);
-                    }}
-                    className={`relative group overflow-hidden rounded-xl aspect-video border-2 transition-all duration-200 ${
-                      currentBackground === bg.url 
-                        ? 'border-blue-500 ring-2 ring-blue-200' 
-                        : 'border-white/30 hover:border-white/50'
-                    }`}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <img
-                      src={bg.url}
-                      alt={bg.name}
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
-                    <div className="absolute bottom-0 left-0 right-0 p-3 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-200">
-                      <h5 className="font-semibold text-sm">{bg.name}</h5>
-                      <p className="text-xs opacity-90">{bg.description}</p>
-                    </div>
-                    {currentBackground === bg.url && (
-                      <div className="absolute top-2 right-2 bg-blue-500 text-white rounded-full p-1">
-                        <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                        </svg>
+              {/* Cherry Blossom Colors Section */}
+              <div className="mb-8">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-8 h-8 bg-gradient-to-r from-pink-400 to-rose-500 rounded-full"></div>
+                  <h4 className="font-semibold text-slate-800">Cherry Blossom Palette</h4>
+                </div>
+                <div className="grid grid-cols-3 gap-4">
+                  {cherryBlossomColors.map((color) => (
+                    <motion.button
+                      key={color.id}
+                      type="button"
+                      onClick={() => {
+                        onBackgroundChange(color.gradient);
+                        setIsOpen(false);
+                      }}
+                      className={`relative group overflow-hidden rounded-xl aspect-video border-2 transition-all duration-200 ${
+                        currentBackground === color.gradient 
+                          ? 'border-pink-500 ring-2 ring-pink-200' 
+                          : 'border-white/30 hover:border-pink-300'
+                      }`}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <div
+                        className="w-full h-full"
+                        style={{ background: color.gradient }}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+                      <div className="absolute bottom-0 left-0 right-0 p-3 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-200">
+                        <h5 className="font-semibold text-sm">{color.name}</h5>
+                        <p className="text-xs opacity-90">{color.description}</p>
                       </div>
-                    )}
-                  </motion.button>
-                ))}
+                      {currentBackground === color.gradient && (
+                        <div className="absolute top-2 right-2 bg-pink-500 text-white rounded-full p-1">
+                          <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                          </svg>
+                        </div>
+                      )}
+                    </motion.button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Nature Backgrounds Section */}
+              <div>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-8 h-8 bg-gradient-to-r from-green-400 to-blue-500 rounded-full"></div>
+                  <h4 className="font-semibold text-slate-800">Nature Backgrounds</h4>
+                </div>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                  {natureBackgrounds.map((bg) => (
+                    <motion.button
+                      key={bg.id}
+                      type="button"
+                      onClick={() => {
+                        onBackgroundChange(bg.url);
+                        setIsOpen(false);
+                      }}
+                      className={`relative group overflow-hidden rounded-xl aspect-video border-2 transition-all duration-200 ${
+                        currentBackground === bg.url 
+                          ? 'border-blue-500 ring-2 ring-blue-200' 
+                          : 'border-white/30 hover:border-white/50'
+                      }`}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <img
+                        src={bg.url}
+                        alt={bg.name}
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+                      <div className="absolute bottom-0 left-0 right-0 p-3 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-200">
+                        <h5 className="font-semibold text-sm">{bg.name}</h5>
+                        <p className="text-xs opacity-90">{bg.description}</p>
+                      </div>
+                      {currentBackground === bg.url && (
+                        <div className="absolute top-2 right-2 bg-blue-500 text-white rounded-full p-1">
+                          <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                          </svg>
+                        </div>
+                      )}
+                    </motion.button>
+                  ))}
+                </div>
               </div>
             </motion.div>
           </motion.div>

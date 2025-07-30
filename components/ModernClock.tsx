@@ -18,7 +18,7 @@ export const ModernClock: React.FC = () => {
       hour: '2-digit', 
       minute: '2-digit',
       hour12: true 
-    }).replace(' ', '');
+    });
   };
 
   const formatDate = (date: Date) => {
@@ -63,8 +63,8 @@ export const ModernClock: React.FC = () => {
       className={`relative overflow-hidden rounded-3xl shadow-2xl p-8 mb-8 `}
     >
       {/* Subtle background pattern */}
-      <div className="absolute inset-0 bg-white/20 backdrop-blur-xl" />
-      <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-transparent" />
+      <div className="absolute inset-0 bg-pink-50/20 backdrop-blur-xl" />
+      <div className="absolute inset-0 bg-gradient-to-br from-pink-300/30 via-transparent to-transparent" />
 
       <div className="relative z-10 text-center">
         <div className="flex items-baseline justify-center gap-4 mb-3">

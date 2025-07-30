@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Play, Pause, RotateCcw, Settings, Timer, Zap, Coffee } from 'lucide-react';
+import { Play, Pause, RotateCcw, Settings, Timer, Zap, Coffee, X } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { Task } from '@/lib/types';
 
@@ -24,10 +24,12 @@ interface PomodoroTimerProps {
   startTimer: (taskId?: string) => void;
   pauseTimer: () => void;
   resetTimer: () => void;
+  clearCurrentTask: () => void;
   updateTimerSettings: () => void;
   formatTime: (seconds: number) => string;
   getProgress: () => number;
   tasks: Record<string, Task>;
+  moveTaskToTodo: (taskId: string) => void;
 }
 
 export const PomodoroTimer: React.FC<PomodoroTimerProps> = ({
@@ -49,10 +51,12 @@ export const PomodoroTimer: React.FC<PomodoroTimerProps> = ({
   startTimer,
   pauseTimer,
   resetTimer,
+  clearCurrentTask,
   updateTimerSettings,
   formatTime,
   getProgress,
-  tasks
+  tasks,
+  moveTaskToTodo
 }) => {
   React.useEffect(() => {
     if (sessionCompleted) {
@@ -190,11 +194,26 @@ export const PomodoroTimer: React.FC<PomodoroTimerProps> = ({
       </div>
 
       {currentTask && (
-        <div className="bg-pink-50 rounded-lg p-4 mb-6 border border-pink-200">
+        <div className="bg-pink-50 rounded-lg p-4 mb-6 border border-pink-200 relative">
+          <button
+            type="button"
+            onClick={() => {
+              if (currentTaskId) {
+                moveTaskToTodo(currentTaskId);
+                clearCurrentTask();
+                resetTimer();
+              }
+            }}
+            className="absolute top-2 right-2 p-1 text-pink-400 hover:text-pink-600 hover:bg-pink-100 rounded-full transition-colors"
+            title="Move task back to To Do"
+          >
+            <X size={16} />
+          </button>
+          
           <p className="text-sm text-pink-600 font-medium mb-1">Currently working on:</p>
-          <h3 className="font-semibold text-rose-900">{currentTask.title}</h3>
+          <h3 className="font-semibold text-rose-900 pr-8">{currentTask.title}</h3>
           {currentTask.description && (
-            <p className="text-sm text-rose-700 mt-1">{currentTask.description}</p>
+            <p className="text-sm text-rose-700 mt-1 pr-8">{currentTask.description}</p>
           )}
         </div>
       )}
