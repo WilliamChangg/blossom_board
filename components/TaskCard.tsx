@@ -26,10 +26,10 @@ export const TaskCard: React.FC<TaskCardProps> = ({
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           className={`
-            group bg-white rounded-xl shadow-sm border border-gray-100 p-4 mb-3 
-            hover:shadow-md hover:border-gray-200 hover:bg-gray-50/50 
+            group bg-white/90 backdrop-blur-sm rounded-xl shadow-sm border border-pink-100 p-4 mb-3 
+            hover:shadow-md hover:border-pink-200 hover:bg-pink-50/30 
             cursor-grab active:cursor-grabbing
-            ${snapshot.isDragging ? 'shadow-lg rotate-2 scale-105 bg-white' : ''}
+            ${snapshot.isDragging ? 'shadow-lg rotate-2 scale-105 bg-white/95 border-pink-300' : ''}
           `}
         >
           <div className="flex items-start justify-between mb-3">
@@ -41,32 +41,32 @@ export const TaskCard: React.FC<TaskCardProps> = ({
             </div>
             
             {task.pomodoroSessions > 0 && (
-              <div className="flex items-center gap-1 text-xs text-gray-500">
+              <div className="flex items-center gap-1 text-xs text-rose-500">
                 <Clock size={12} />
                 <span>{task.pomodoroSessions}</span>
               </div>
             )}
           </div>
 
-          <h3 className="font-semibold text-gray-900 mb-2 group-hover:text-gray-800">
+          <h3 className="font-semibold text-rose-900 mb-2 group-hover:text-rose-800">
             {task.title}
           </h3>
           
           {task.description && (
-            <p className="text-sm text-gray-600 mb-3 line-clamp-2 group-hover:text-gray-700">
+            <p className="text-sm text-rose-600 mb-3 line-clamp-2 group-hover:text-rose-700">
               {task.description}
             </p>
           )}
 
-          <div className="flex items-center justify-between text-xs text-gray-400">
+          <div className="flex items-center justify-between text-xs text-rose-400">
             <span>
               {task.createdAt.toLocaleDateString()}
             </span>
             
             {task.status === 'done' && (
-              <div className="flex items-center gap-1 text-emerald-500">
+              <div className="flex items-center gap-1 text-pink-500">
                 <Star size={12} className="fill-current" />
-                <span className="text-emerald-600">Done</span>
+                <span className="text-pink-600">Done</span>
               </div>
             )}
           </div>

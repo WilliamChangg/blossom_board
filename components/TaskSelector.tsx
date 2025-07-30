@@ -33,12 +33,12 @@ export const TaskSelector: React.FC<TaskSelectorProps> = ({
         animate={{ opacity: 1, y: 0 }}
         className="text-center"
       >
-        <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20 p-8">
-          <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <Circle className="w-8 h-8 text-gray-400" />
+        <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border border-pink-200/50 p-8">
+          <div className="w-16 h-16 bg-pink-50 rounded-full flex items-center justify-center mx-auto mb-4 border border-pink-200">
+            <Circle className="w-8 h-8 text-pink-400" />
           </div>
-          <h3 className="text-xl font-semibold text-slate-800 mb-4">No Tasks Available</h3>
-          <p className="text-slate-600 mb-6">
+          <h3 className="text-xl font-semibold text-rose-800 mb-4">No Tasks Available</h3>
+          <p className="text-rose-600 mb-6">
             Go back to the dashboard to create some tasks first.
           </p>
         </div>
@@ -52,21 +52,16 @@ export const TaskSelector: React.FC<TaskSelectorProps> = ({
       animate={{ opacity: 1, y: 0 }}
       className="space-y-6"
     >
-      <div className="text-center mb-6">
-        <h3 className="text-2xl font-bold text-slate-800 mb-2">Select a Task to Focus On</h3>
-        <p className="text-slate-600">Choose from your available tasks to start a Pomodoro session</p>
-      </div>
-
       {/* To Do Tasks */}
       {todoTasks.length > 0 && (
-        <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20 p-6">
+        <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border border-pink-200/50 p-6">
           <div className="flex items-center gap-3 mb-4">
-            <div className="p-2 bg-gradient-to-r from-slate-500 to-slate-600 rounded-lg text-white">
+            <div className="p-2 bg-gradient-to-r from-pink-300 to-rose-400 rounded-lg text-white shadow-sm">
               <Circle size={18} />
             </div>
             <div>
-              <h4 className="font-semibold text-slate-800">To Do</h4>
-              <p className="text-xs text-slate-500">{todoTasks.length} tasks</p>
+              <h4 className="font-semibold text-rose-800">To Do</h4>
+              <p className="text-xs text-rose-500">{todoTasks.length} tasks</p>
             </div>
           </div>
 
@@ -75,8 +70,8 @@ export const TaskSelector: React.FC<TaskSelectorProps> = ({
               
               <motion.div
                 key={task.id}
-                className={`group bg-white rounded-xl shadow-sm border p-4 cursor-pointer transition-all duration-200 hover:shadow-md hover:border-blue-200 ${
-                  currentTaskId === task.id ? 'ring-2 ring-blue-400 border-blue-400' : 'border-gray-200'
+                className={`group bg-white rounded-xl shadow-sm border p-4 cursor-pointer transition-all duration-200 hover:shadow-md hover:border-pink-300 ${
+                  currentTaskId === task.id ? 'ring-2 ring-pink-400 border-pink-400 bg-pink-50' : 'border-pink-200'
                 }`}
                 onClick={() => onTaskSelect(task.id)}
                 whileHover={{ scale: 1.02 }}
@@ -86,15 +81,15 @@ export const TaskSelector: React.FC<TaskSelectorProps> = ({
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-2">
                       <div className={`w-2 h-2 rounded-full ${getPriorityDot(task.priority)}`} />
-                      <h5 className="font-semibold text-slate-800">{task.title}</h5>
+                      <h5 className="font-semibold text-rose-800">{task.title}</h5>
                       <span className={`text-xs px-2 py-1 rounded-full border ${getPriorityColor(task.priority)}`}>
                         {task.priority}
                       </span>
                     </div>
                     {task.description && (
-                      <p className="text-sm text-slate-600 mb-2">{task.description}</p>
+                      <p className="text-sm text-rose-600 mb-2">{task.description}</p>
                     )}
-                    <div className="flex items-center gap-3 text-xs text-slate-500">
+                    <div className="flex items-center gap-3 text-xs text-rose-500">
                       <span>{task.createdAt.toLocaleDateString()}</span>
                       {task.pomodoroSessions > 0 && (
                         <div className="flex items-center gap-1">
@@ -113,8 +108,8 @@ export const TaskSelector: React.FC<TaskSelectorProps> = ({
                     }}
                     className={`p-3 rounded-lg transition-all duration-200 ${
                       currentTaskId === task.id
-                        ? 'bg-blue-500 text-white'
-                        : 'bg-blue-50 text-blue-600 hover:bg-blue-100 group-hover:bg-blue-500 group-hover:text-white'
+                        ? 'bg-pink-500 text-white'
+                        : 'bg-pink-50 text-pink-600 hover:bg-pink-100 group-hover:bg-pink-500 group-hover:text-white'
                     }`}
                   >
                     <Play size={16} />
@@ -128,14 +123,14 @@ export const TaskSelector: React.FC<TaskSelectorProps> = ({
 
       {/* In Progress Tasks */}
       {doingTasks.length > 0 && (
-        <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20 p-6">
+        <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border border-pink-200/50 p-6">
           <div className="flex items-center gap-3 mb-4">
-            <div className="p-2 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg text-white">
+            <div className="p-2 bg-gradient-to-r from-rose-400 to-pink-500 rounded-lg text-white shadow-sm">
               <Focus size={18} />
             </div>
             <div>
-              <h4 className="font-semibold text-slate-800">In Progress</h4>
-              <p className="text-xs text-slate-500">{doingTasks.length} tasks</p>
+              <h4 className="font-semibold text-rose-800">In Progress</h4>
+              <p className="text-xs text-rose-500">{doingTasks.length} tasks</p>
             </div>
           </div>
 
@@ -143,8 +138,8 @@ export const TaskSelector: React.FC<TaskSelectorProps> = ({
             {doingTasks.map((task:Task) => (
               <motion.div
                 key={task.id}
-                className={`group bg-white rounded-xl shadow-sm border p-4 cursor-pointer transition-all duration-200 hover:shadow-md hover:border-blue-200 ${
-                  currentTaskId === task.id ? 'ring-2 ring-blue-400 border-blue-400' : 'border-gray-200'
+                className={`group bg-white rounded-xl shadow-sm border p-4 cursor-pointer transition-all duration-200 hover:shadow-md hover:border-rose-300 ${
+                  currentTaskId === task.id ? 'ring-2 ring-rose-400 border-rose-400 bg-rose-50' : 'border-rose-200'
                 }`}
                 onClick={() => onTaskSelect(task.id)}
                 whileHover={{ scale: 1.02 }}
@@ -154,15 +149,15 @@ export const TaskSelector: React.FC<TaskSelectorProps> = ({
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-2">
                       <div className={`w-2 h-2 rounded-full ${getPriorityDot(task.priority)}`} />
-                      <h5 className="font-semibold text-slate-800">{task.title}</h5>
+                      <h5 className="font-semibold text-rose-800">{task.title}</h5>
                       <span className={`text-xs px-2 py-1 rounded-full border ${getPriorityColor(task.priority)}`}>
                         {task.priority}
                       </span>
                     </div>
                     {task.description && (
-                      <p className="text-sm text-slate-600 mb-2">{task.description}</p>
+                      <p className="text-sm text-rose-600 mb-2">{task.description}</p>
                     )}
-                    <div className="flex items-center gap-3 text-xs text-slate-500">
+                    <div className="flex items-center gap-3 text-xs text-rose-500">
                       <span>{task.createdAt.toLocaleDateString()}</span>
                       {task.pomodoroSessions > 0 && (
                         <div className="flex items-center gap-1">
@@ -174,7 +169,7 @@ export const TaskSelector: React.FC<TaskSelectorProps> = ({
                   </div>
                   
                   <button
-                    title="stop"
+                    title="continue"
                     type="button"
                     onClick={(e) => {
                       e.stopPropagation();
@@ -182,8 +177,8 @@ export const TaskSelector: React.FC<TaskSelectorProps> = ({
                     }}
                     className={`p-3 rounded-lg transition-all duration-200 ${
                       currentTaskId === task.id
-                        ? 'bg-blue-500 text-white'
-                        : 'bg-blue-50 text-blue-600 hover:bg-blue-100 group-hover:bg-blue-500 group-hover:text-white'
+                        ? 'bg-rose-500 text-white'
+                        : 'bg-rose-50 text-rose-600 hover:bg-rose-100 group-hover:bg-rose-500 group-hover:text-white'
                     }`}
                   >
                     <Play size={16} />

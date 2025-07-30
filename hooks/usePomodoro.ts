@@ -80,6 +80,14 @@ export const usePomodoro = ({ tasks, setTasks }: UsePomodoroProps) => {
     setTotalTime(duration);
   };
 
+  const clearCurrentTask = () => {
+    setCurrentTaskId(null);
+    setIsRunning(false);
+    const duration = currentSession === 'work' ? workMinutes * 60 : breakMinutes * 60;
+    setTimeLeft(duration);
+    setTotalTime(duration);
+  };
+
   const updateTimerSettings = () => {
     const duration = currentSession === 'work' ? workMinutes * 60 : breakMinutes * 60;
     setTimeLeft(duration);
@@ -118,6 +126,7 @@ export const usePomodoro = ({ tasks, setTasks }: UsePomodoroProps) => {
     startTimer,
     pauseTimer,
     resetTimer,
+    clearCurrentTask,
     updateTimerSettings,
     formatTime,
     getProgress

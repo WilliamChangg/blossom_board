@@ -40,14 +40,14 @@ const initialColumns: Record<string, Column> = {
     id: 'todo', 
     title: 'To Do', 
     taskIds: ['task-1'], 
-    color: 'from-slate-500 to-slate-600', 
+    color: 'from-pink-300 to-pink-400', 
     icon: Circle 
   },
   doing: { 
     id: 'doing', 
     title: 'In Progress', 
     taskIds: ['task-2'], 
-    color: 'from-blue-500 to-blue-600', 
+    color: 'from-pink-400 to-pink-600', 
     icon: Focus 
   },
   done: { 
@@ -171,6 +171,34 @@ export const useTasks = () => {
     setColumns(updatedColumns);
   };
 
+  const moveTaskToCompleted = (taskId: string) => {
+    const task = tasks[taskId];
+    if (!task || task.status === 'done') return;
+
+    // Update task status
+    const updatedTasks = { ...tasks };
+    updatedTasks[taskId] = {
+      ...updatedTasks[taskId],
+      status: 'done'
+    };
+
+    // Move from current column to done column
+    const currentColumn = task.status;
+    const updatedColumns = { ...columns };
+    updatedColumns[currentColumn] = {
+      ...updatedColumns[currentColumn],
+      taskIds: updatedColumns[currentColumn].taskIds.filter(id => id !== taskId)
+    };
+    updatedColumns.done = {
+      ...updatedColumns.done,
+      taskIds: [...updatedColumns.done.taskIds, taskId]
+    };
+
+    setTasks(updatedTasks);
+    setColumns(updatedColumns);
+    setFocusStreak(prev => prev + 1);
+  };
+
   const getTodayStats = () => ({
     completed: Object.values(tasks).filter(task => task.status === 'done').length,
     inProgress: Object.values(tasks).filter(task => task.status === 'doing').length,
@@ -202,6 +230,7 @@ export const useTasks = () => {
     addTask,
     deleteTask,
     moveTaskToInProgress,
+    moveTaskToCompleted,
     getTodayStats,
     getPriorityColor,
     getPriorityDot

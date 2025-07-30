@@ -6,9 +6,11 @@ import { Timer } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useTaskContext } from '@/contexts/TaskContext';
 import { useBackground } from '@/contexts/BackgroundContext';
+import { usePomodoroContext } from '@/contexts/PomodoroContext';
 import { KanbanBoard } from '@/components/KanbanBoard';
 import { ModernClock } from '@/components/ModernClock';
 import { BackgroundSelector } from '@/components/BackgroundSelector';
+import { CherryBlossomPetals } from '@/components/CherryBlossomPetals';
 
 export default function DashboardPage() {
   const router = useRouter();
@@ -26,6 +28,14 @@ export default function DashboardPage() {
     getPriorityDot,
     moveTaskToInProgress
   } = useTaskContext();
+
+  const {
+    isRunning,
+    currentTask,
+    timeLeft,
+    formatTime,
+    currentSession
+  } = usePomodoroContext();
 
   const todayStats = getTodayStats();
 
@@ -49,6 +59,9 @@ export default function DashboardPage() {
       {/* Background Overlay for Content Readability */}
       <div className="absolute inset-0 bg-white/10 backdrop-blur-[1px]" />
       
+      {/* Cherry Blossom Petals Animation */}
+      <CherryBlossomPetals />
+      
       {/* Content Container */}
       <div className="relative z-10">
       <div className="max-w-7xl mx-auto px-6 py-8">
@@ -61,23 +74,44 @@ export default function DashboardPage() {
         >
           <div className="flex items-center justify-between mb-6">
             <div>
-                <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-pink-600 to-rose-500 tracking-wide drop-shadow-[0_2px_2px_rgba(0,0,0,0.15)]">
+                <h1 className="text-4xl font-extrabold text-transparent bg-clip-text  bg-pink-300 tracking-wide drop-shadow-[0_2px_2px_rgba(0,0,0,0.15)]">
                   🌸 Blossom Board
                 </h1>
             </div>
             
             <div className="flex items-center gap-6">
-              {/* Quick Stats */}
-
+              {/* Timer Status Indicator */}
+              {isRunning && currentTask && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="flex items-center gap-3 px-4 py-2 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white rounded-xl shadow-lg"
+                >
+                  <div className="relative">
+                    <Timer size={18} />
+                    <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
+                  </div>
+                  <div className="text-sm">
+                    <div className="font-semibold">{formatTime(timeLeft)}</div>
+                    <div className="text-xs opacity-90">
+                      {currentSession === 'work' ? 'Work' : 'Break'} • {currentTask.title}
+                    </div>
+                  </div>
+                </motion.div>
+              )}
 
               {/* Pomodoro Timer Button */}
               <button
                 type="button"
                 onClick={() => router.push('/pomodoro')}
-                className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-pink-400 via-pink-600 to-rose-500 tracking-wide drop-shadow-[0_2px_2px_rgba(0,0,0,0.15)] text-white rounded-xl hover:from-pink-400 hover:via-pink-600 hover:to-rose-600 transition-all duration-200 font-semibold shadow-lg"
+                className={`flex items-center gap-2 px-6 py-3 bg-gradient-to-r tracking-wide drop-shadow-[0_2px_2px_rgba(0,0,0,0.15)] text-white rounded-xl transition-all duration-200 font-semibold shadow-lg ${
+                  isRunning && currentTask
+                    ? 'from-emerald-400 via-emerald-600 to-emerald-500 hover:from-emerald-400 hover:via-emerald-600 hover:to-emerald-600'
+                    : 'from-pink-400 via-pink-600 to-rose-500 hover:from-pink-400 hover:via-pink-600 hover:to-rose-600'
+                }`}
               >
                 <Timer size={20} />
-                Pomodoro Timer
+                {isRunning && currentTask ? 'Pomodoro Timer' : 'Pomodoro Timer'}
               </button>
             </div>
           </div>

@@ -14,6 +14,7 @@ interface TaskContextType {
   addTask: (title: string, description: string, priority: Task['priority']) => void;
   deleteTask: (taskId: string) => void;
   moveTaskToInProgress: (taskId: string) => void;
+  moveTaskToCompleted: (taskId: string) => void;
   getTodayStats: () => { completed: number; inProgress: number; todo: number };
   getPriorityColor: (priority: Task['priority']) => string;
   getPriorityDot: (priority: Task['priority']) => string;

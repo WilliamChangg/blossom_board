@@ -56,24 +56,24 @@ export const KanbanBoard: React.FC<KanbanBoardProps> = ({
             <Target size={24} />
           </div>
           <div>
-            <h2 className="text-2xl font-bold text-gray-900">Task Board</h2>
-            <p className="text-gray-600">Organize and track your productivity</p>
+            <h2 className="text-2xl font-bold text-pink-400">Task Board</h2>
+            <p className="text-pink-600">Organize and track your productivity</p>
           </div>
         </div>
 
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-4 text-sm">
             <div className="flex items-center gap-2">
-              <div className="w-3 h-3 bg-slate-500 rounded-full" />
-              <span className="text-gray-600">{stats.todo} Todo</span>
+              <div className="w-3 h-3 bg-pink-300 rounded-full" />
+              <span className="text-pink-600">{stats.todo} Todo</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-3 h-3 bg-blue-500 rounded-full" />
-              <span className="text-gray-600">{stats.inProgress} In Progress</span>
+              <div className="w-3 h-3 bg-rose-500 rounded-full" />
+              <span className="text-pink-600">{stats.inProgress} In Progress</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 bg-emerald-500 rounded-full" />
-              <span className="text-gray-600">{stats.completed} Completed</span>
+              <span className="text-pink-600">{stats.completed} Completed</span>
             </div>
           </div>
 
@@ -156,14 +156,14 @@ export const KanbanBoard: React.FC<KanbanBoardProps> = ({
       <DragDropContext onDragEnd={handleDragEnd}>
         <div className="grid grid-cols-3 gap-6">
           {Object.values(columns).filter(column => column.id !== 'trash').map((column) => (
-            <div key={column.id} className="bg-gray-50 rounded-xl p-4 h-fit">
+            <div key={column.id} className="bg-pink-50/90 rounded-xl p-4 h-fit">
               <div className="flex items-center gap-3 mb-4">
                 <div className={`p-2 bg-gradient-to-r ${column.color} rounded-lg text-white`}>
                   <column.icon size={18} />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900">{column.title}</h3>
-                  <p className="text-xs text-gray-500">{column.taskIds.length} tasks</p>
+                  <h3 className="font-semibold text-rose-900">{column.title}</h3>
+                  <p className="text-xs text-rose-500">{column.taskIds.length} tasks</p>
                 </div>
               </div>
 
@@ -174,7 +174,7 @@ export const KanbanBoard: React.FC<KanbanBoardProps> = ({
                     {...provided.droppableProps}
                     className={`
                       min-h-[200px] transition-all duration-200 rounded-lg
-                      ${snapshot.isDraggingOver ? 'bg-blue-50 border-2 border-blue-200 border-dashed' : ''}
+                      ${snapshot.isDraggingOver ? 'bg-pink-50 border-2 border-pink-200 border-dashed' : ''}
                     `}
                   >
                     {column.taskIds.map((taskId, index) => {
@@ -195,7 +195,7 @@ export const KanbanBoard: React.FC<KanbanBoardProps> = ({
                               <button
                                 type="button"
                                 onClick={() => startTimer(task.id)}
-                                className="bg-blue-500 text-white p-1 rounded-md hover:bg-blue-600"
+                                className="bg-pink-500 text-white p-1 rounded-md hover:bg-pink-600"
                                 title="Start Pomodoro for this task"
                               >
                                 <Target size={12} />
@@ -211,7 +211,7 @@ export const KanbanBoard: React.FC<KanbanBoardProps> = ({
                               className="bg-red-500 text-white p-1 rounded-md hover:bg-red-600"
                               title="Delete task"
                             >
-                              <Trash2 size={12} />
+                              <Trash2 size={18} />
                             </button>
                           </div>
                         </div>
@@ -227,7 +227,7 @@ export const KanbanBoard: React.FC<KanbanBoardProps> = ({
       </DragDropContext>
 
       {stats.completed > 0 && (
-        <div className="bg-gradient-to-r from-emerald-50 to-blue-50 rounded-xl p-6 border border-emerald-200">
+        <div className="bg-gradient-to-r from-pink-50 to-rose-50 rounded-xl p-6 border border-pink-200">
           <div className="flex items-center gap-3">
             <div className="p-3 bg-emerald-100 rounded-full">
               <CheckCircle2 className="w-6 h-6 text-emerald-600" />

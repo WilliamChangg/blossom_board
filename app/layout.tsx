@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { TaskProvider } from "@/contexts/TaskContext";
 import { BackgroundProvider } from "@/contexts/BackgroundContext";
+import { PomodoroProvider } from "@/contexts/PomodoroContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,7 +32,9 @@ export default function RootLayout({
       >
         <BackgroundProvider>
           <TaskProvider>
-            {children}
+            <PomodoroProvider>
+              {children}
+            </PomodoroProvider>
           </TaskProvider>
         </BackgroundProvider>
       </body>
