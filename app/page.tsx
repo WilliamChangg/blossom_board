@@ -110,7 +110,7 @@ export default function DashboardPage() {
                 className={`flex items-center gap-2 px-6 py-3 bg-gradient-to-r tracking-wide drop-shadow-[0_2px_2px_rgba(0,0,0,0.15)] text-white rounded-xl transition-all duration-200 font-semibold shadow-lg ${
                   isRunning && currentTask
                     ? 'from-emerald-400 via-emerald-600 to-emerald-500 hover:from-emerald-400 hover:via-emerald-600 hover:to-emerald-600'
-                    : 'from-pink-400 via-pink-600 to-rose-500 hover:from-pink-400 hover:via-pink-600 hover:to-rose-600'
+                    : 'from-pink-300 to-pink-400 hover:from-pink-400  hover:to-pink-500'
                 }`}
               >
                 <Timer size={20} />

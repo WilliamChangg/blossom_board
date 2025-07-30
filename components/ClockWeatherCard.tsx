@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Cloud, Sun, CloudRain, CloudSnow, MapPin } from 'lucide-react';
 
-const API_KEY = process.env.OPENWEATHER_API_KEY;
+const API_KEY = process.env.NEXT_PUBLIC_OPENWEATHER_API_KEY;
 
 interface WeatherData {
   location: string;
@@ -107,7 +107,7 @@ export const ClockWeatherCard: React.FC = () => {
       hour: '2-digit', 
       minute: '2-digit',
       hour12: true 
-    });
+    }).replace(' ', '');
   };
 
   const formatDate = (date: Date) => {
@@ -190,15 +190,15 @@ export const ClockWeatherCard: React.FC = () => {
 
         {/* Centered Time Display */}
         <div className="text-center">
-          <div className="text-6xl lg:text-8xl font-mono font-bold bg-gradient-to-r from-pink-400 via-pink-600 to-rose-500 tracking-wide drop-shadow-[0_2px_2px_rgba(0,0,0,0.15)] bg-clip-text text-transparent mb-2">
+          <div className="text-6xl lg:text-8xl font-mono font-bold bg-gradient-to-tr from-pink-200 via-pink-300 to-pink-200 tracking-wide drop-shadow-[0_4px_8px_rgba(0,0,0,0.3)] bg-clip-text text-transparent mb-2">
             {formatTime(time)}
           </div>
           
-          <div className="text-2xl font-semibold bg-gradient-to-r from-rose-500 via-pink-600 to-pink-500 tracking-wide bg-clip-text text-transparent mb-1">
+          <div className="text-2xl font-semibold text-pink-400 tracking-wide drop-shadow-[0_2px_4px_rgba(0,0,0,0.2)] mb-1 ">
             {getTimeOfDay()}
           </div>
           
-          <div className="text-lg font-medium bg-gradient-to-r from-pink-400 via-pink-600 to-rose-500 bg-clip-text text-transparent">
+          <div className="text-lg font-medium text-pink-500 tracking-wide drop-shadow-[0_1px_3px_rgba(0,0,0,0.15)]">
             {formatDate(time)}
           </div>
         </div>

@@ -52,7 +52,7 @@ export const KanbanBoard: React.FC<KanbanBoardProps> = ({
     <div className="space-y-6 ">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <div className="p-3 bg-gradient-to-r from-pink-400 via-pink-600 to-rose-500 tracking-wide drop-shadow-[0_2px_2px_rgba(0,0,0,0.15)] rounded-xl text-white">
+          <div className="p-3 bg-gradient-to-br from-pink-300 to-pink-400 tracking-wide drop-shadow-[0_2px_2px_rgba(0,0,0,0.15)] rounded-xl text-white">
             <Target size={24} />
           </div>
           <div>
@@ -79,7 +79,7 @@ export const KanbanBoard: React.FC<KanbanBoardProps> = ({
 
           <button
             onClick={() => setShowAddTask(true)}
-            className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-pink-400 via-pink-500 to-rose-500 tracking-wide drop-shadow-[0_2px_2px_rgba(0,0,0,0.15)] text-white rounded-lg  hover:bg-blue-700 transition-colors shadow-sm hover:shadow-md"
+            className="flex items-center gap-2 px-4 py-2 bg-pink-300 tracking-wide drop-shadow-[0_2px_2px_rgba(0,0,0,0.15)] text-white rounded-lg  hover:bg-pink-400 transition-colors shadow-sm hover:shadow-md"
           >
             <Plus size={18} />
             Add Task
