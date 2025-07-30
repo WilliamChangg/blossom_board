@@ -79,10 +79,15 @@ export default function DashboardPage() {
           transition={{ duration: 0.6 }}
         >
           <div className="flex items-center justify-between mb-6">
-            <div>
-                <h1 className="text-4xl font-extrabold text-transparent bg-clip-text  bg-pink-300 tracking-wide drop-shadow-[0_2px_2px_rgba(0,0,0,0.15)]">
-                  🌸 Blossom Board
-                </h1>
+            <div className="flex items-center gap-4">
+                <img 
+                  src="/blossom_board_logo.png" 
+                  alt="Blossom Board"
+                  className="h-12 w-auto"
+                />
+                 <h1 className="-mr-2 mt-2 text-4xl font-black bg-pink-300 bg-clip-text text-transparent">
+                  Blossom Board
+                 </h1>
             </div>
             
             <div className="flex items-center gap-6">

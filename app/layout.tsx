@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Nunito } from "next/font/google";
 import "./globals.css";
 import { TaskProvider } from "@/contexts/TaskContext";
 import { BackgroundProvider } from "@/contexts/BackgroundContext";
@@ -16,9 +16,15 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const nunito = Nunito({
+  variable: "--font-nunito",
+  subsets: ["latin"],
+  weight: ["400", "600", "700", "800", "900"]
+});
+
 export const metadata: Metadata = {
   title: "Productivity App",
-  description: "A productivity app with Pomodoro timer and task management",
+  description: "A productivity app with Pomodoro timer and task management and kaban board",
 };
 
 export default function RootLayout({
@@ -29,7 +35,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${nunito.variable} antialiased`}
       >
         <BackgroundProvider>
           <PetalsProvider>
